@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Amazing Bestie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            color: #5a3e36;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #8b5a5a;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #7a4a4a;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .message-box {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .message-box:hover {
+            transform: translateY(-10px);
+        }
+
+        h2 {
+            color: #b76e79;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 2px solid #ffd1dc;
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .photo-gallery {
+            flex: 1;
+            min-width: 280px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .photo-placeholder {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-placeholder i {
+            font-size: 2.5rem;
+            color: #b76e79;
+        }
+       img{
+         width:300px;
+         height:250px;
+       }
+        .memories {
+            margin-top: 3rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .memory-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .memory-item {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .memory-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .memory-item h3 {
+            color: #b76e79;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .memory-item h3 i {
+            color: #ff9aa2;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #7a4a4a;
+            font-size: 1.1rem;
+        }
+
+        .heart-btn {
+            background: #ff9aa2;
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+        }
+
+        .heart-btn:hover {
+            background: #b76e79;
+            transform: scale(1.05);
+        }
+
+        .special-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .special-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #b76e79;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="hearts" id="hearts-container"></div>
+            <h1>To My Dearest Bestie</h1>
+            <p class="subtitle">Thank you for being the most amazing part of my life</p>
+        </header>
+
+        <div class="main-content">
+            <div class="message-box">
+                <h2><i class="fas fa-heart"></i> My Heartfelt Message</h2>
+                <p>My dearest bestie,</p>
+                <p>I don't even know where to begin to express how grateful I am to have you in my life. You are more than just a friend to me - you're my confidante, my partner in crime, my shoulder to cry on, and the person who makes my world brighter just by being in it.</p>
+                <p>Through all the ups and downs, laughter and tears, you've been my constant. Your unwavering support means more to me than words can say. You see the real me and love me anyway, and that is the most precious gift anyone could ever give.</p>
+                <p>I cherish every moment we've shared - from our deep conversations to our silly adventures. You bring so much joy, warmth, and light into my life, and I'm endlessly thankful for your beautiful soul.</p>
+                <p>No matter where life takes us, please always remember how incredibly special you are to me.</p>
+                <p>With all my love,</p>
+                <p>Your forever friend</p>
+                
+                <button class="heart-btn" id="specialBtn">
+                    <i class="fas fa-heart"></i> A Special Message Just For You
+                </button>
+            </div>
+
+            <div class="photo-gallery">
+                <div class="photo-placeholder">
+                    <img src='./images/IMG-20251008-WA0016.jpg'>
+                </div>
+                <div class="photo-placeholder">
+                    <img src='./images/IMG-20251010-WA0010.jpg'>
+                </div>
+                <div class="photo-placeholder">
+                    <img src='./images/IMG-20251010-WA0012.jpg'>
+                </div>
+                <div class="photo-placeholder">
+                    <img src='./images/IMG-20251010-WA0011.jpg'>
+                </div>
+
+        
+            </div>
+        </div>
+
+
+        <footer>
+            <p>You are loved more than you could ever imagine.</p>
+            <p>Forever grateful for you, my beautiful bestie.</p>
+        </footer>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="special-message" id="specialMessage">
+        <button class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2>Just For You, My Love</h2>
+        <p>In a world full of temporary things, you are a permanent feeling in my heart.</p>
+        <p>Every day with you is a blessing I don't take for granted.</p>
+        <p>You are my favorite hello and my hardest goodbye.</p>
+        <p>Thank you for being you - perfectly, wonderfully, beautifully you.</p>
+        <p>I love you more than words can express.</p>
+        <div style="font-size: 3rem; color: #ff9aa2; margin: 1rem 0;">
+            <i class="fas fa-heart"></i>
+        </div>
+    </div>
+    <audio id="music" autoplay loop>
+    <source src="Abochi - Bestie (Official Music Video) - Yoofi Unfiltered.mp3" type="audio/mpeg">
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('hearts-container');
+        const heartIcons = ['❤️', '💖', '💕', '💗', '💓', '💞'];
+        
+        for (let i = 0; i < 25; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.top = `${Math.random() * 100}%`;
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            heart.style.fontSize = `${Math.random() * 1 + 1}rem`;
+            heartsContainer.appendChild(heart);
+        }
+
+        // Special message functionality
+        const specialBtn = document.getElementById('specialBtn');
+        const specialMessage = document.getElementById('specialMessage');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closeBtn');
+
+        specialBtn.addEventListener('click', () => {
+            specialMessage.classList.add('show');
+            overlay.classList.add('show');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            specialMessage.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        overlay.addEventListener('click', () => {
+            specialMessage.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        // Add some interactive elements to photo placeholders
+        const photoPlaceholders = document.querySelectorAll('.photo-placeholder');
+        photoPlaceholders.forEach(placeholder => {
+            placeholder.addEventListener('click', () => {
+                placeholder.style.backgroundColor = '#ffd1dc';
+                placeholder.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    placeholder.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                    placeholder.style.transform = 'scale(1)';
+                }, 500);
+            });
+        });
+            // Try to auto-play when user opens the page
+    window.addEventListener('load', () => {
+      const music = document.getElementById('music');
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If browser blocks autoplay, start after a tap
+          document.body.addEventListener('click', () => {
+            music.play();
+          }, { once: true });
+        });
+      }
+    });
+    </script>
+</body>
+</html>
